@@ -17,6 +17,9 @@ public class Pedido {
     private String urlImagem;
     private String descricao;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
+
     @Enumerated(EnumType.STRING)
     private StatusPedido status;
 
@@ -71,4 +74,12 @@ public class Pedido {
     public StatusPedido getStatus() { return status; }
 
     public void setStatus(StatusPedido status) { this.status = status; }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
