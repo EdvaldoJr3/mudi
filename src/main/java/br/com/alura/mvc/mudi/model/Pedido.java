@@ -1,5 +1,7 @@
 package br.com.alura.mvc.mudi.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -22,9 +24,11 @@ public class Pedido {
     private StatusPedido status;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedido", fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<Oferta> ofertas;
 
     public List<Oferta> getOfertas() {
@@ -33,6 +37,14 @@ public class Pedido {
 
     public void setOfertas(List<Oferta> ofertas) {
         this.ofertas = ofertas;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNomeProduto() {
